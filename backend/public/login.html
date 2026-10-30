@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,19 +14,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:wght@600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:wght@600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap"
+        rel="stylesheet">
 
     <!-- MediaPipe Libraries for Hands & Face Mesh -->
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
     <script>
-        (function(){
+        (function () {
             try {
                 var fs = localStorage.getItem('aicte_fs');
                 if (fs) document.documentElement.style.fontSize = fs + '%';
-            } catch(e) {}
+            } catch (e) { }
         })();
     </script>
 
@@ -38,20 +42,66 @@
         }
 
         /* AICTE typography: Inter for UI text, Source Serif 4 for headings (same pairing as the portal dashboard) */
-        .font-orbitron, body .font-mono {
+        .font-orbitron,
+        body .font-mono {
             font-family: 'Inter', 'Noto Sans Devanagari', system-ui, sans-serif !important;
             letter-spacing: 0 !important;
         }
-        body .font-mono { font-variant-numeric: tabular-nums; }
-        #main-title, h1.font-orbitron, h2.font-orbitron, h3.font-orbitron {
+
+        body .font-mono {
+            font-variant-numeric: tabular-nums;
+        }
+
+        #main-title,
+        h1.font-orbitron,
+        h2.font-orbitron,
+        h3.font-orbitron {
             font-family: 'Source Serif 4', Georgia, 'Noto Sans Devanagari', serif !important;
             font-weight: 700;
         }
-        .aicte-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
-        .aicte-brand img { height: 40px; width: 40px; object-fit: contain; background:#fff; border-radius:50%; padding:2px; }
-        .aicte-brand b { display:block; font-family:'Source Serif 4',Georgia,serif; font-size:17px; color:#fff; line-height:1.1; }
-        .aicte-brand small { display:block; font-size:10.5px; color:#fdba74; font-weight:600; letter-spacing:.04em; text-transform:uppercase; }
-        .tricolour { position:fixed; top:0; left:0; right:0; height:4px; z-index:60; background:linear-gradient(90deg,#f58220 0 50%,#138808 50% 100%); }
+
+        .aicte-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .aicte-brand img {
+            height: 40px;
+            width: 40px;
+            object-fit: contain;
+            background: #fff;
+            border-radius: 50%;
+            padding: 2px;
+        }
+
+        .aicte-brand b {
+            display: block;
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 17px;
+            color: #fff;
+            line-height: 1.1;
+        }
+
+        .aicte-brand small {
+            display: block;
+            font-size: 10.5px;
+            color: #fdba74;
+            font-weight: 600;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+        }
+
+        .tricolour {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            z-index: 60;
+            background: linear-gradient(90deg, #f58220 0 50%, #138808 50% 100%);
+        }
 
         /* Glassmorphism Card Style */
         .glass-card {
@@ -63,7 +113,8 @@
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .glass-card:hover, .glass-card.hover-active {
+        .glass-card:hover,
+        .glass-card.hover-active {
             border-color: rgba(56, 189, 248, 0.9);
             box-shadow: 0 0 25px rgba(56, 189, 248, 0.5), inset 0 0 15px rgba(56, 189, 248, 0.2);
             transform: translateY(-2px);
@@ -82,9 +133,19 @@
         }
 
         @keyframes scan {
-            0% { top: 0%; opacity: 0.7; }
-            50% { opacity: 1; }
-            100% { top: 100%; opacity: 0.7; }
+            0% {
+                top: 0%;
+                opacity: 0.7;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                top: 100%;
+                opacity: 0.7;
+            }
         }
 
         /* Video element mirroring */
@@ -103,44 +164,59 @@
         ::-webkit-scrollbar {
             width: 5px;
         }
+
         ::-webkit-scrollbar-track {
             background: #090d16;
         }
+
         ::-webkit-scrollbar-thumb {
             background: #1e293b;
             border-radius: 3px;
         }
+
         ::-webkit-scrollbar-thumb:hover {
             background: #38bdf8;
         }
     </style>
 </head>
-<body class="h-screen max-h-screen overflow-y-auto bg-slate-950 text-slate-100 flex flex-col justify-between relative select-none">
+
+<body
+    class="h-screen max-h-screen overflow-y-auto bg-slate-950 text-slate-100 flex flex-col justify-between relative select-none">
     <div class="tricolour"></div>
 
     <!-- LIVE WEBCAM FEED & AR HUD OVERLAY (BACKGROUND LAYER) -->
     <div class="fixed inset-0 z-0 bg-slate-950 flex items-center justify-center pointer-events-none">
         <!-- Live Camera Stream -->
-        <video id="webcam" class="w-full h-full object-cover mirror-video opacity-40" autoplay playsinline muted></video>
+        <video id="webcam" class="w-full h-full object-cover mirror-video opacity-40" autoplay playsinline
+            muted></video>
 
         <!-- Dynamic AR Canvas for Skeletal Hands & Facial Landmarks -->
         <canvas id="ar-canvas" class="fixed inset-0 w-full h-full object-cover z-10 pointer-events-none"></canvas>
 
         <!-- Sci-Fi Grid Overlay -->
-        <div class="fixed inset-0 bg-[radial-gradient(circle_at_center,transparent_25%,#030712_92%)] z-10 pointer-events-none"></div>
-        <div class="fixed inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] z-10 pointer-events-none"></div>
+        <div
+            class="fixed inset-0 bg-[radial-gradient(circle_at_center,transparent_25%,#030712_92%)] z-10 pointer-events-none">
+        </div>
+        <div
+            class="fixed inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] z-10 pointer-events-none">
+        </div>
     </div>
 
     <!-- MAIN APP WRAPPER (OPTIMIZED TO FIT LAPTOP SCREENS EXACTLY) -->
-    <div id="app-container" class="relative z-20 flex flex-col h-full min-h-screen lg:min-h-0 lg:h-screen justify-between p-2 md:p-4 max-w-7xl mx-auto w-full">
+    <div id="app-container"
+        class="relative z-20 flex flex-col h-full min-h-screen lg:min-h-0 lg:h-screen justify-between p-2 md:p-4 max-w-7xl mx-auto w-full">
 
         <!-- TOP NAVIGATION & STATUS BAR -->
-        <header class="flex flex-wrap justify-between items-center gap-2 bg-slate-900/80 backdrop-blur-md border border-cyan-500/30 px-3.5 py-2 rounded-xl shadow-lg flex-shrink-0">
+        <header
+            class="flex flex-wrap justify-between items-center gap-2 bg-slate-900/80 backdrop-blur-md border border-cyan-500/30 px-3.5 py-2 rounded-xl shadow-lg flex-shrink-0">
             <div class="flex items-center space-x-2.5">
-                <a href="/" class="aicte-brand" title="Back to AICTE home"><img src="/assets/aicte-logo.png" alt="AICTE logo"></a>
+                <a href="/" class="aicte-brand" title="Back to AICTE home"><img src="/assets/aicte-logo.png"
+                        alt="AICTE logo"></a>
                 <div>
                     <h1 class="font-orbitron text-base md:text-lg font-bold leading-tight text-white">
-                        AICTE Portal <span class="text-[10px] px-1.5 py-0.5 rounded border border-orange-400/50 text-orange-300 font-mono">Secure Login</span>
+                        AICTE Portal <span
+                            class="text-[10px] px-1.5 py-0.5 rounded border border-orange-400/50 text-orange-300 font-mono">Secure
+                            Login</span>
                     </h1>
                     <p class="text-[11px] text-slate-400 font-mono flex items-center gap-1.5 leading-none mt-0.5">
                         <span id="cam-indicator" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -150,34 +226,42 @@
             </div>
 
             <!-- Mode Switcher Tabs (Login vs New User Registration) -->
-            <div id="nav-mode-container" class="flex items-center bg-slate-950/80 p-1 rounded-lg border border-slate-800">
-                <button id="btn-tab-login" onclick="setAuthMode('login')" class="px-3.5 py-1.5 rounded-md text-xs font-orbitron font-semibold transition-all duration-200 bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-sm">
+            <div id="nav-mode-container"
+                class="flex items-center bg-slate-950/80 p-1 rounded-lg border border-slate-800">
+                <button id="btn-tab-login" onclick="setAuthMode('login')"
+                    class="px-3.5 py-1.5 rounded-md text-xs font-orbitron font-semibold transition-all duration-200 bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-sm">
                     <i class="fa-solid fa-right-to-bracket mr-1.5"></i>LOGIN
                 </button>
-                <button id="btn-tab-register" onclick="setAuthMode('register')" class="px-3.5 py-1.5 rounded-md text-xs font-orbitron font-semibold text-slate-400 hover:text-white transition-all duration-200">
+                <button id="btn-tab-register" onclick="setAuthMode('register')"
+                    class="px-3.5 py-1.5 rounded-md text-xs font-orbitron font-semibold text-slate-400 hover:text-white transition-all duration-200">
                     <i class="fa-solid fa-user-plus mr-1.5"></i>NEW REGISTRATION
                 </button>
             </div>
 
             <!-- Telemetry, DB Status & Gmail SMTP config -->
             <div class="flex items-center space-x-2 text-xs font-mono text-slate-300">
-                <div class="hidden sm:flex items-center gap-1.5 bg-slate-950/60 px-2.5 py-1 rounded-md border border-slate-800">
+                <div
+                    class="hidden sm:flex items-center gap-1.5 bg-slate-950/60 px-2.5 py-1 rounded-md border border-slate-800">
                     <i class="fa-solid fa-hand text-cyan-400 text-xs"></i>
                     <span class="text-[11px]">HAND:</span>
                     <span id="stat-hand-detect" class="text-red-400 font-bold text-[11px]">NO HAND</span>
                 </div>
-                <div class="hidden sm:flex items-center gap-1.5 bg-slate-950/60 px-2.5 py-1 rounded-md border border-slate-800">
+                <div
+                    class="hidden sm:flex items-center gap-1.5 bg-slate-950/60 px-2.5 py-1 rounded-md border border-slate-800">
                     <i class="fa-solid fa-face-smile text-cyan-400 text-xs"></i>
                     <span class="text-[11px]">FACE:</span>
                     <span id="stat-face-detect" class="text-red-400 font-bold text-[11px]">NO FACE</span>
                 </div>
                 <!-- SQLite Users Modal Button -->
-                <button onclick="openUsersModal()" class="flex items-center gap-1.5 bg-cyan-950/40 hover:bg-cyan-900/50 px-2.5 py-1 rounded-md border border-cyan-500/40 text-cyan-300 transition-all text-xs">
+                <button onclick="openUsersModal()"
+                    class="flex items-center gap-1.5 bg-cyan-950/40 hover:bg-cyan-900/50 px-2.5 py-1 rounded-md border border-cyan-500/40 text-cyan-300 transition-all text-xs">
                     <i class="fa-solid fa-database text-cyan-400"></i>
                     <span>DB (<span id="stat-user-count">0</span>)</span>
                 </button>
                 <!-- Gmail SMTP Settings Modal Button -->
-                <button onclick="openSmtpModal()" id="btn-smtp-indicator" class="flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 px-2.5 py-1 rounded-md border border-amber-500/40 text-amber-300 transition-all text-xs" title="Configure Real Gmail OTP Delivery">
+                <button onclick="openSmtpModal()" id="btn-smtp-indicator"
+                    class="flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 px-2.5 py-1 rounded-md border border-amber-500/40 text-amber-300 transition-all text-xs"
+                    title="Configure Real Gmail OTP Delivery">
                     <i class="fa-solid fa-envelope text-amber-400"></i>
                     <span id="smtp-badge-text">GMAIL SMTP</span>
                 </button>
@@ -189,25 +273,30 @@
 
             <!-- STEP BREADCRUMBS INDICATOR -->
             <div id="step-indicator" class="flex items-center gap-2 mb-2 text-xs font-mono">
-                <div id="step-badge-1" class="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-400 text-cyan-300 font-bold text-[11px]">
+                <div id="step-badge-1"
+                    class="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-400 text-cyan-300 font-bold text-[11px]">
                     <span>1.</span> IDENTIFY
                 </div>
                 <i class="fa-solid fa-chevron-right text-slate-600 text-[9px]"></i>
-                <div id="step-badge-2" class="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-900/60 border border-slate-800 text-slate-500 text-[11px]">
+                <div id="step-badge-2"
+                    class="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-900/60 border border-slate-800 text-slate-500 text-[11px]">
                     <span>2.</span> GESTURE SELECT
                 </div>
                 <i class="fa-solid fa-chevron-right text-slate-600 text-[9px]"></i>
-                <div id="step-badge-3" class="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-900/60 border border-slate-800 text-slate-500 text-[11px]">
+                <div id="step-badge-3"
+                    class="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-900/60 border border-slate-800 text-slate-500 text-[11px]">
                     <span>3.</span> AUTHENTICATE
                 </div>
             </div>
 
             <!-- INSTRUCTION HEADER -->
             <div class="text-center mb-3 max-w-xl">
-                <h2 id="main-title" class="font-orbitron text-xl md:text-2xl font-extrabold tracking-wide text-white drop-shadow-md leading-tight">
+                <h2 id="main-title"
+                    class="font-orbitron text-xl md:text-2xl font-extrabold tracking-wide text-white drop-shadow-md leading-tight">
                     Biometric Authentication Portal
                 </h2>
-                <p id="main-subtitle" class="text-slate-300 mt-0.5 text-xs md:text-sm flex items-center justify-center gap-1.5">
+                <p id="main-subtitle"
+                    class="text-slate-300 mt-0.5 text-xs md:text-sm flex items-center justify-center gap-1.5">
                     Enter your email to initiate your biometric session
                 </p>
             </div>
@@ -220,11 +309,14 @@
                 <!-- ═══════════════════════════════════════════════════════════ -->
                 <div id="view-step-credentials" class="w-full max-w-md glass-card rounded-2xl p-5 md:p-6 relative">
                     <div class="text-center mb-3">
-                        <div class="w-11 h-11 rounded-xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center mx-auto mb-1.5 text-cyan-400">
+                        <div
+                            class="w-11 h-11 rounded-xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center mx-auto mb-1.5 text-cyan-400">
                             <i id="cred-icon" class="fa-solid fa-id-card text-xl"></i>
                         </div>
-                        <h3 id="cred-title" class="font-orbitron text-lg md:text-xl font-bold text-white">Enter Your Details</h3>
-                        <p id="cred-subtitle" class="text-slate-400 text-xs mt-0.5">Provide identification to proceed to gesture selection</p>
+                        <h3 id="cred-title" class="font-orbitron text-lg md:text-xl font-bold text-white">Enter Your
+                            Details</h3>
+                        <p id="cred-subtitle" class="text-slate-400 text-xs mt-0.5">Provide identification to proceed to
+                            gesture selection</p>
                     </div>
 
                     <form id="form-credentials" onsubmit="handleCredentialsProceed(event)" class="space-y-3">
@@ -233,7 +325,8 @@
                             <label class="text-[11px] font-mono text-cyan-300 block">FULL NAME</label>
                             <div class="relative">
                                 <i class="fa-solid fa-user absolute left-3.5 top-3 text-slate-400 text-xs"></i>
-                                <input type="text" id="input-full-name" placeholder="Your Name" class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 pl-9 pr-3 text-sm text-white focus:outline-none focus:ring-1 focus:ring-cyan-400 transition-all font-sans">
+                                <input type="text" id="input-full-name" placeholder="Your Name"
+                                    class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 pl-9 pr-3 text-sm text-white focus:outline-none focus:ring-1 focus:ring-cyan-400 transition-all font-sans">
                             </div>
                         </div>
 
@@ -242,7 +335,8 @@
                             <label class="text-[11px] font-mono text-cyan-300 block">EMAIL ADDRESS</label>
                             <div class="relative">
                                 <i class="fa-solid fa-envelope absolute left-3.5 top-3 text-slate-400 text-xs"></i>
-                                <input type="email" id="input-email-address" required placeholder="user@gmail.com" class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 pl-9 pr-3 text-sm text-white focus:outline-none focus:ring-1 focus:ring-cyan-400 transition-all font-sans">
+                                <input type="email" id="input-email-address" required placeholder="user@gmail.com"
+                                    class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 pl-9 pr-3 text-sm text-white focus:outline-none focus:ring-1 focus:ring-cyan-400 transition-all font-sans">
                             </div>
                         </div>
 
@@ -252,8 +346,12 @@
                             <div class="space-y-1">
                                 <label class="text-[11px] font-mono text-cyan-300 block">REGISTER AS</label>
                                 <div class="grid grid-cols-2 gap-2">
-                                    <button type="button" id="btn-reg-institution" onclick="setRegType('institution')" class="py-2 rounded-xl border text-xs font-semibold transition-all"><i class="fa-solid fa-building-columns mr-1.5"></i>Institution</button>
-                                    <button type="button" id="btn-reg-member" onclick="setRegType('member')" class="py-2 rounded-xl border text-xs font-semibold transition-all"><i class="fa-solid fa-user-tie mr-1.5"></i>AICTE Member</button>
+                                    <button type="button" id="btn-reg-institution" onclick="setRegType('institution')"
+                                        class="py-2 rounded-xl border text-xs font-semibold transition-all"><i
+                                            class="fa-solid fa-building-columns mr-1.5"></i>Institution</button>
+                                    <button type="button" id="btn-reg-member" onclick="setRegType('member')"
+                                        class="py-2 rounded-xl border text-xs font-semibold transition-all"><i
+                                            class="fa-solid fa-user-tie mr-1.5"></i>AICTE Member</button>
                                 </div>
                                 <p id="reg-type-hint" class="text-[10px] text-slate-400 leading-snug"></p>
                             </div>
@@ -261,59 +359,77 @@
                             <div id="fields-institution" class="space-y-3">
                                 <div class="space-y-1">
                                     <label class="text-[11px] font-mono text-cyan-300 block">INSTITUTION NAME *</label>
-                                    <input type="text" id="reg-inst-name" maxlength="160" placeholder="e.g. Sunrise College of Engineering" class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 px-3 text-sm text-white focus:outline-none focus:ring-1 focus:ring-cyan-400 font-sans">
+                                    <input type="text" id="reg-inst-name" maxlength="160"
+                                        placeholder="e.g. Sunrise College of Engineering"
+                                        class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 px-3 text-sm text-white focus:outline-none focus:ring-1 focus:ring-cyan-400 font-sans">
                                 </div>
                                 <div class="grid grid-cols-2 gap-2">
                                     <div class="space-y-1">
-                                        <label class="text-[11px] font-mono text-cyan-300 block">AICTE / PERMANENT ID</label>
-                                        <input type="text" id="reg-inst-aicte" maxlength="40" placeholder="Optional" class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 px-3 text-sm text-white focus:outline-none font-sans">
+                                        <label class="text-[11px] font-mono text-cyan-300 block">AICTE / PERMANENT
+                                            ID</label>
+                                        <input type="text" id="reg-inst-aicte" maxlength="40" placeholder="Optional"
+                                            class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 px-3 text-sm text-white focus:outline-none font-sans">
                                     </div>
                                     <div class="space-y-1">
                                         <label class="text-[11px] font-mono text-cyan-300 block">CONTACT PHONE</label>
-                                        <input type="tel" id="reg-inst-phone" maxlength="20" placeholder="Optional" class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 px-3 text-sm text-white focus:outline-none font-sans">
+                                        <input type="tel" id="reg-inst-phone" maxlength="20" placeholder="Optional"
+                                            class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 px-3 text-sm text-white focus:outline-none font-sans">
                                     </div>
                                 </div>
                                 <div class="space-y-1">
-                                    <label class="text-[11px] font-mono text-cyan-300 block">AUTHORIZED SIGNATORY (PRINCIPAL / DIRECTOR)</label>
-                                    <input type="text" id="reg-inst-contact" maxlength="80" placeholder="Optional" class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 px-3 text-sm text-white focus:outline-none font-sans">
+                                    <label class="text-[11px] font-mono text-cyan-300 block">AUTHORIZED SIGNATORY
+                                        (PRINCIPAL / DIRECTOR)</label>
+                                    <input type="text" id="reg-inst-contact" maxlength="80" placeholder="Optional"
+                                        class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 px-3 text-sm text-white focus:outline-none font-sans">
                                 </div>
                             </div>
 
                             <div id="fields-member" class="hidden space-y-3">
                                 <div class="space-y-1">
                                     <label class="text-[11px] font-mono text-cyan-300 block">MEMBER ROLE *</label>
-                                    <select id="reg-mem-role" class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 px-3 text-sm text-white focus:outline-none font-sans"></select>
+                                    <select id="reg-mem-role"
+                                        class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 px-3 text-sm text-white focus:outline-none font-sans"></select>
                                 </div>
                                 <div class="grid grid-cols-2 gap-2">
                                     <div class="space-y-1">
-                                        <label class="text-[11px] font-mono text-cyan-300 block">EMPLOYEE / MEMBER ID *</label>
-                                        <input type="text" id="reg-mem-empid" maxlength="40" placeholder="e.g. AICTE-EVC-1042" class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 px-3 text-sm text-white focus:outline-none font-sans">
+                                        <label class="text-[11px] font-mono text-cyan-300 block">EMPLOYEE / MEMBER ID
+                                            *</label>
+                                        <input type="text" id="reg-mem-empid" maxlength="40"
+                                            placeholder="e.g. AICTE-EVC-1042"
+                                            class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 px-3 text-sm text-white focus:outline-none font-sans">
                                     </div>
                                     <div class="space-y-1">
                                         <label class="text-[11px] font-mono text-cyan-300 block">REGION</label>
-                                        <select id="reg-mem-region" class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 px-3 text-sm text-white focus:outline-none font-sans"></select>
+                                        <select id="reg-mem-region"
+                                            class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 px-3 text-sm text-white focus:outline-none font-sans"></select>
                                     </div>
                                 </div>
                                 <div class="space-y-1">
                                     <label class="text-[11px] font-mono text-cyan-300 block">DESIGNATION</label>
-                                    <input type="text" id="reg-mem-designation" maxlength="100" placeholder="e.g. Professor, IIT Bombay" class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 px-3 text-sm text-white focus:outline-none font-sans">
+                                    <input type="text" id="reg-mem-designation" maxlength="100"
+                                        placeholder="e.g. Professor, IIT Bombay"
+                                        class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 px-3 text-sm text-white focus:outline-none font-sans">
                                 </div>
                                 <div class="space-y-1">
-                                    <label class="text-[11px] font-mono text-cyan-300 block">ORGANISATION / OFFICE</label>
-                                    <input type="text" id="reg-mem-org" maxlength="120" placeholder="Optional" class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 px-3 text-sm text-white focus:outline-none font-sans">
+                                    <label class="text-[11px] font-mono text-cyan-300 block">ORGANISATION /
+                                        OFFICE</label>
+                                    <input type="text" id="reg-mem-org" maxlength="120" placeholder="Optional"
+                                        class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 px-3 text-sm text-white focus:outline-none font-sans">
                                 </div>
                             </div>
                         </div>
 
                         <!-- Quick 1-Glance Face Unlock button (for login mode) -->
                         <div id="quick-unlock-banner" class="hidden pt-1">
-                            <button type="button" onclick="launchDirectFaceUnlock()" class="w-full py-1.5 px-3 rounded-lg border border-cyan-500/40 bg-cyan-950/30 hover:bg-cyan-900/40 text-cyan-300 text-xs font-mono flex items-center justify-center gap-1.5 transition-all">
+                            <button type="button" onclick="launchDirectFaceUnlock()"
+                                class="w-full py-1.5 px-3 rounded-lg border border-cyan-500/40 bg-cyan-950/30 hover:bg-cyan-900/40 text-cyan-300 text-xs font-mono flex items-center justify-center gap-1.5 transition-all">
                                 <i class="fa-solid fa-bolt text-cyan-400"></i> DIRECT 1-GLANCE FACE UNLOCK
                             </button>
                         </div>
 
                         <!-- Continue Button -->
-                        <button type="submit" id="btn-proceed-gesture" class="w-full py-2.5 rounded-xl font-orbitron font-bold text-xs bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-md shadow-cyan-500/30 transition-all mt-2 flex items-center justify-center gap-2 cursor-pointer">
+                        <button type="submit" id="btn-proceed-gesture"
+                            class="w-full py-2.5 rounded-xl font-orbitron font-bold text-xs bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-md shadow-cyan-500/30 transition-all mt-2 flex items-center justify-center gap-2 cursor-pointer">
                             <span>PROCEED TO GESTURE SELECTION</span>
                             <i class="fa-solid fa-arrow-right text-[11px]"></i>
                         </button>
@@ -324,14 +440,16 @@
                 <!-- STEP 2: GESTURE SELECTION CARDS (HOVER WITH FINGER TIP)     -->
                 <!-- ═══════════════════════════════════════════════════════════ -->
                 <div id="view-step-gesture-cards" class="hidden flex flex-col items-center w-full">
-                    
+
                     <!-- Selected user preview chip -->
-                    <div class="mb-3 inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-900/80 border border-cyan-500/40 text-xs font-mono text-slate-300">
+                    <div
+                        class="mb-3 inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-900/80 border border-cyan-500/40 text-xs font-mono text-slate-300">
                         <span class="text-slate-400">TARGET:</span>
                         <span id="chip-user-name" class="text-cyan-300 font-bold">User</span>
                         <span class="text-slate-500">•</span>
                         <span id="chip-user-email" class="text-slate-400">email</span>
-                        <button onclick="backToStep(1)" class="ml-1 text-slate-400 hover:text-white transition-colors" title="Edit details">
+                        <button onclick="backToStep(1)" class="ml-1 text-slate-400 hover:text-white transition-colors"
+                            title="Edit details">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </button>
                     </div>
@@ -340,59 +458,83 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5 w-full max-w-3xl px-2">
 
                         <!-- CARD 1: FACE OPTION -->
-                        <div id="card-option-face" onclick="handleCardSelection('face')" class="interactive-card glass-card relative rounded-2xl p-5 md:p-6 flex flex-col items-center justify-center cursor-pointer group">
+                        <div id="card-option-face" onclick="handleCardSelection('face')"
+                            class="interactive-card glass-card relative rounded-2xl p-5 md:p-6 flex flex-col items-center justify-center cursor-pointer group">
                             <!-- Gesture Radial Loading Ring Overlay -->
-                            <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-30 opacity-0 progress-overlay transition-opacity duration-150">
+                            <div
+                                class="absolute inset-0 flex items-center justify-center pointer-events-none z-30 opacity-0 progress-overlay transition-opacity duration-150">
                                 <svg class="w-28 h-28">
-                                    <circle class="text-slate-800/80" stroke-width="6" stroke="currentColor" fill="transparent" r="46" cx="56" cy="56"/>
-                                    <circle class="progress-ring-circle text-cyan-400" stroke-width="6" stroke-dasharray="289.02" stroke-dashoffset="289.02" stroke-linecap="round" stroke="currentColor" fill="transparent" r="46" cx="56" cy="56"/>
+                                    <circle class="text-slate-800/80" stroke-width="6" stroke="currentColor"
+                                        fill="transparent" r="46" cx="56" cy="56" />
+                                    <circle class="progress-ring-circle text-cyan-400" stroke-width="6"
+                                        stroke-dasharray="289.02" stroke-dashoffset="289.02" stroke-linecap="round"
+                                        stroke="currentColor" fill="transparent" r="46" cx="56" cy="56" />
                                 </svg>
-                                <span class="absolute font-mono text-xs font-bold text-cyan-300 progress-percent">0%</span>
+                                <span
+                                    class="absolute font-mono text-xs font-bold text-cyan-300 progress-percent">0%</span>
                             </div>
 
                             <!-- Scan Line Graphic -->
-                            <div class="scan-line rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <div class="scan-line rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity">
+                            </div>
 
                             <!-- Card Icon -->
-                            <div class="w-16 h-16 rounded-xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center mb-3 text-cyan-400 group-hover:scale-105 group-hover:bg-cyan-500/20 transition-all duration-200">
+                            <div
+                                class="w-16 h-16 rounded-xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center mb-3 text-cyan-400 group-hover:scale-105 group-hover:bg-cyan-500/20 transition-all duration-200">
                                 <i class="fa-solid fa-id-card-clip text-3xl"></i>
                             </div>
 
                             <!-- Card Titles -->
-                            <h3 id="card-face-title" class="font-orbitron text-lg font-bold text-white mb-1 tracking-wide text-center">Face Biometrics</h3>
-                            <p id="card-face-desc" class="text-slate-300 text-xs text-center line-clamp-2 px-2">Fast facial landmark recognition to authenticate your identity.</p>
+                            <h3 id="card-face-title"
+                                class="font-orbitron text-lg font-bold text-white mb-1 tracking-wide text-center">Face
+                                Biometrics</h3>
+                            <p id="card-face-desc" class="text-slate-300 text-xs text-center line-clamp-2 px-2">Fast
+                                facial landmark recognition to authenticate your identity.</p>
 
                             <!-- Visual Touch Zone Indicator -->
-                            <div class="mt-4 px-3 py-1 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 text-[11px] font-mono flex items-center gap-1.5">
+                            <div
+                                class="mt-4 px-3 py-1 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 text-[11px] font-mono flex items-center gap-1.5">
                                 <i class="fa-solid fa-hand-pointer animate-pulse"></i> POINT FINGER TIP HERE
                             </div>
                         </div>
 
                         <!-- CARD 2: PASSWORD / OTP OPTION -->
-                        <div id="card-option-password" onclick="handleCardSelection('password')" class="interactive-card glass-card relative rounded-2xl p-5 md:p-6 flex flex-col items-center justify-center cursor-pointer group">
+                        <div id="card-option-password" onclick="handleCardSelection('password')"
+                            class="interactive-card glass-card relative rounded-2xl p-5 md:p-6 flex flex-col items-center justify-center cursor-pointer group">
                             <!-- Gesture Radial Loading Ring Overlay -->
-                            <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-30 opacity-0 progress-overlay transition-opacity duration-150">
+                            <div
+                                class="absolute inset-0 flex items-center justify-center pointer-events-none z-30 opacity-0 progress-overlay transition-opacity duration-150">
                                 <svg class="w-28 h-28">
-                                    <circle class="text-slate-800/80" stroke-width="6" stroke="currentColor" fill="transparent" r="46" cx="56" cy="56"/>
-                                    <circle class="progress-ring-circle text-blue-500" stroke-width="6" stroke-dasharray="289.02" stroke-dashoffset="289.02" stroke-linecap="round" stroke="currentColor" fill="transparent" r="46" cx="56" cy="56"/>
+                                    <circle class="text-slate-800/80" stroke-width="6" stroke="currentColor"
+                                        fill="transparent" r="46" cx="56" cy="56" />
+                                    <circle class="progress-ring-circle text-blue-500" stroke-width="6"
+                                        stroke-dasharray="289.02" stroke-dashoffset="289.02" stroke-linecap="round"
+                                        stroke="currentColor" fill="transparent" r="46" cx="56" cy="56" />
                                 </svg>
-                                <span class="absolute font-mono text-xs font-bold text-blue-300 progress-percent">0%</span>
+                                <span
+                                    class="absolute font-mono text-xs font-bold text-blue-300 progress-percent">0%</span>
                             </div>
 
                             <!-- Scan Line Graphic -->
-                            <div class="scan-line rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <div class="scan-line rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity">
+                            </div>
 
                             <!-- Card Icon -->
-                            <div class="w-16 h-16 rounded-xl bg-blue-500/10 border border-blue-400/30 flex items-center justify-center mb-3 text-blue-400 group-hover:scale-105 group-hover:bg-blue-500/20 transition-all duration-200">
+                            <div
+                                class="w-16 h-16 rounded-xl bg-blue-500/10 border border-blue-400/30 flex items-center justify-center mb-3 text-blue-400 group-hover:scale-105 group-hover:bg-blue-500/20 transition-all duration-200">
                                 <i class="fa-solid fa-shield-halved text-3xl"></i>
                             </div>
 
                             <!-- Card Titles -->
-                            <h3 id="card-pass-title" class="font-orbitron text-lg font-bold text-white mb-1 tracking-wide text-center">Password & OTP</h3>
-                            <p id="card-pass-desc" class="text-slate-300 text-xs text-center line-clamp-2 px-2">Authenticate securely with password or real 6-digit email OTP.</p>
+                            <h3 id="card-pass-title"
+                                class="font-orbitron text-lg font-bold text-white mb-1 tracking-wide text-center">
+                                Password & OTP</h3>
+                            <p id="card-pass-desc" class="text-slate-300 text-xs text-center line-clamp-2 px-2">
+                                Authenticate securely with password or real 6-digit email OTP.</p>
 
                             <!-- Visual Touch Zone Indicator -->
-                            <div class="mt-4 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/40 text-blue-300 text-[11px] font-mono flex items-center gap-1.5">
+                            <div
+                                class="mt-4 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/40 text-blue-300 text-[11px] font-mono flex items-center gap-1.5">
                                 <i class="fa-solid fa-hand-pointer animate-pulse"></i> POINT FINGER TIP HERE
                             </div>
                         </div>
@@ -403,16 +545,22 @@
                 <!-- ═══════════════════════════════════════════════════════════ -->
                 <!-- STEP 3A: FACE SCANNER HUD (REGISTER OR VERIFY)            -->
                 <!-- ═══════════════════════════════════════════════════════════ -->
-                <div id="view-face-scanner" class="hidden w-full max-w-md glass-card rounded-2xl p-5 text-center relative flex flex-col items-center">
-                    <button onclick="backToStep(2)" class="absolute top-4 left-4 text-slate-400 hover:text-white transition-colors" title="Back to Options">
+                <div id="view-face-scanner"
+                    class="hidden w-full max-w-md glass-card rounded-2xl p-5 text-center relative flex flex-col items-center">
+                    <button onclick="backToStep(2)"
+                        class="absolute top-4 left-4 text-slate-400 hover:text-white transition-colors"
+                        title="Back to Options">
                         <i class="fa-solid fa-arrow-left text-base"></i>
                     </button>
 
-                    <h3 id="face-scanner-title" class="font-orbitron text-lg font-bold text-white mb-0.5">Scanning Facial Mesh</h3>
-                    <p id="face-scanner-desc" class="text-slate-300 text-xs mb-3">Align your face inside the target frame</p>
+                    <h3 id="face-scanner-title" class="font-orbitron text-lg font-bold text-white mb-0.5">Scanning
+                        Facial Mesh</h3>
+                    <p id="face-scanner-desc" class="text-slate-300 text-xs mb-3">Align your face inside the target
+                        frame</p>
 
                     <!-- Target HUD Frame with live camera feed preview -->
-                    <div id="face-target-frame" class="relative w-52 h-52 my-1 border-2 border-cyan-400/50 rounded-2xl flex items-center justify-center overflow-hidden bg-slate-900/60 shadow-inner">
+                    <div id="face-target-frame"
+                        class="relative w-52 h-52 my-1 border-2 border-cyan-400/50 rounded-2xl flex items-center justify-center overflow-hidden bg-slate-900/60 shadow-inner">
                         <div class="scan-line"></div>
 
                         <!-- Target Corners -->
@@ -422,19 +570,23 @@
                         <div class="absolute bottom-2.5 right-2.5 w-5 h-5 border-b-2 border-r-2 border-cyan-400"></div>
 
                         <!-- Live Mini Face Canvas Overlay -->
-                        <canvas id="face-hud-canvas" class="absolute inset-0 w-full h-full object-cover mirror-video pointer-events-none z-10"></canvas>
+                        <canvas id="face-hud-canvas"
+                            class="absolute inset-0 w-full h-full object-cover mirror-video pointer-events-none z-10"></canvas>
 
                         <!-- Silhouette Icon Fallback -->
                         <i class="fa-solid fa-face-viewfinder text-6xl text-cyan-400/30 animate-pulse"></i>
 
                         <!-- Match Confidence Meter -->
-                        <div class="absolute bottom-2 left-3 right-3 bg-slate-950/90 p-2 rounded-lg border border-slate-800 z-20">
+                        <div
+                            class="absolute bottom-2 left-3 right-3 bg-slate-950/90 p-2 rounded-lg border border-slate-800 z-20">
                             <div class="flex justify-between text-[10px] font-mono mb-1 text-slate-300">
                                 <span>BIOMETRIC MATCH</span>
                                 <span id="face-match-percent" class="text-cyan-300 font-bold">0%</span>
                             </div>
                             <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
-                                <div id="face-match-bar" class="h-full bg-gradient-to-r from-cyan-400 to-blue-500 w-0 transition-all duration-200"></div>
+                                <div id="face-match-bar"
+                                    class="h-full bg-gradient-to-r from-cyan-400 to-blue-500 w-0 transition-all duration-200">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -444,7 +596,8 @@
                     </p>
 
                     <!-- Manual Action Trigger Button -->
-                    <button id="btn-manual-face-action" onclick="executeFaceCaptureAction()" class="mt-3 w-full py-2.5 rounded-xl font-orbitron text-xs font-bold border border-cyan-400/60 bg-gradient-to-r from-cyan-500/30 to-blue-600/30 hover:from-cyan-500/50 hover:to-blue-600/50 text-cyan-200 transition-all shadow-md">
+                    <button id="btn-manual-face-action" onclick="executeFaceCaptureAction()"
+                        class="mt-3 w-full py-2.5 rounded-xl font-orbitron text-xs font-bold border border-cyan-400/60 bg-gradient-to-r from-cyan-500/30 to-blue-600/30 hover:from-cyan-500/50 hover:to-blue-600/50 text-cyan-200 transition-all shadow-md">
                         <i class="fa-solid fa-camera mr-2"></i>CAPTURE & ENROLL FACE
                     </button>
                 </div>
@@ -453,12 +606,16 @@
                 <!-- STEP 3B: PASSWORD / OTP VERIFICATION FORM                 -->
                 <!-- ═══════════════════════════════════════════════════════════ -->
                 <div id="view-password-otp-form" class="hidden w-full max-w-md glass-card rounded-2xl p-5 relative">
-                    <button onclick="backToStep(2)" class="absolute top-4 left-4 text-slate-400 hover:text-white transition-colors" title="Back to Options">
+                    <button onclick="backToStep(2)"
+                        class="absolute top-4 left-4 text-slate-400 hover:text-white transition-colors"
+                        title="Back to Options">
                         <i class="fa-solid fa-arrow-left text-base"></i>
                     </button>
 
-                    <h3 id="pass-form-title" class="font-orbitron text-lg font-bold text-center text-white mb-0.5">Security Credentials</h3>
-                    <p id="pass-form-subtitle" class="text-slate-300 text-xs text-center mb-3">Enter password or use 6-digit email OTP</p>
+                    <h3 id="pass-form-title" class="font-orbitron text-lg font-bold text-center text-white mb-0.5">
+                        Security Credentials</h3>
+                    <p id="pass-form-subtitle" class="text-slate-300 text-xs text-center mb-3">Enter password or use
+                        6-digit email OTP</p>
 
                     <form id="auth-credentials-form" onsubmit="handleAuthSubmit(event)" class="space-y-3">
                         <!-- Password Field -->
@@ -466,14 +623,16 @@
                             <label class="text-[11px] font-mono text-cyan-300 block">ACCOUNT PASSWORD</label>
                             <div class="relative">
                                 <i class="fa-solid fa-key absolute left-3.5 top-3 text-slate-400 text-xs"></i>
-                                <input type="password" id="input-auth-password" placeholder="••••••••" class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 pl-9 pr-3 text-sm text-white focus:outline-none focus:ring-1 focus:ring-cyan-400 transition-all font-sans">
+                                <input type="password" id="input-auth-password" placeholder="••••••••"
+                                    class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 pl-9 pr-3 text-sm text-white focus:outline-none focus:ring-1 focus:ring-cyan-400 transition-all font-sans">
                             </div>
                         </div>
 
                         <!-- Divider -->
                         <div class="relative flex py-1 items-center">
                             <div class="flex-grow border-t border-slate-800"></div>
-                            <span class="flex-shrink mx-3 text-slate-500 font-mono text-[10px]">OR VERIFY WITH ONE-TIME CODE</span>
+                            <span class="flex-shrink mx-3 text-slate-500 font-mono text-[10px]">OR VERIFY WITH ONE-TIME
+                                CODE</span>
                             <div class="flex-grow border-t border-slate-800"></div>
                         </div>
 
@@ -481,20 +640,25 @@
                         <div class="space-y-1.5">
                             <div class="flex items-center justify-between">
                                 <label class="text-[11px] font-mono text-cyan-300">ONE-TIME CODE (OTP)</label>
-                                <button type="button" id="btn-request-otp" onclick="requestOTP()" class="text-xs font-mono text-cyan-400 hover:text-cyan-300 hover:underline focus:outline-none transition-colors">
-                                    <i class="fa-solid fa-paper-plane mr-1"></i>[ SEND CODE ]
+                                <button type="button" id="btn-request-otp" onclick="requestOTP()"
+                                    class="text-xs font-mono text-cyan-400 hover:text-cyan-300 hover:underline focus:outline-none transition-colors">
+                                    <i class="fa-solid fa-paper-plane mr-1"></i>[ SEND OTP ]
                                 </button>
                             </div>
                             <div class="relative">
-                                <input type="text" id="input-auth-otp" maxlength="6" placeholder="6-DIGIT CODE" class="w-full text-center tracking-widest font-mono bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 text-base text-cyan-300 focus:outline-none focus:ring-1 focus:ring-cyan-400 transition-all">
+                                <input type="text" id="input-auth-otp" maxlength="6" placeholder="6-DIGIT CODE"
+                                    class="w-full text-center tracking-widest font-mono bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 text-base text-cyan-300 focus:outline-none focus:ring-1 focus:ring-cyan-400 transition-all">
                             </div>
-                            <div id="otp-alert-box" class="p-2 rounded-lg bg-slate-900/70 border border-slate-800 text-[11px] text-slate-400 text-center">
-                                Click <strong class="text-cyan-400">[ SEND CODE ]</strong> to dispatch OTP to your email.
+                            <div id="otp-alert-box"
+                                class="p-2 rounded-lg bg-slate-900/70 border border-slate-800 text-[11px] text-slate-400 text-center">
+                                Click <strong class="text-cyan-400">[ SEND OTP ]</strong> to generate and autofill your
+                                verification code.
                             </div>
                         </div>
 
                         <!-- Submit Button -->
-                        <button type="submit" id="btn-submit-credentials" class="w-full py-2.5 rounded-xl font-orbitron font-bold text-xs bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-md shadow-cyan-500/25 transition-all mt-2">
+                        <button type="submit" id="btn-submit-credentials"
+                            class="w-full py-2.5 rounded-xl font-orbitron font-bold text-xs bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-md shadow-cyan-500/25 transition-all mt-2">
                             VERIFY & UNLOCK
                         </button>
                     </form>
@@ -506,26 +670,32 @@
                 <div id="view-dashboard" class="hidden w-full max-w-2xl glass-card rounded-2xl p-5 relative">
                     <div class="flex flex-col sm:flex-row items-center gap-4 border-b border-slate-800 pb-4 mb-4">
                         <div class="relative flex-shrink-0">
-                            <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-2xl text-white font-bold border-2 border-cyan-400 shadow-md">
+                            <div
+                                class="w-16 h-16 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-2xl text-white font-bold border-2 border-cyan-400 shadow-md">
                                 <span id="dash-avatar-initial">U</span>
                             </div>
-                            <span class="absolute bottom-0 right-0 w-5 h-5 rounded-full bg-emerald-500 border-2 border-slate-900 flex items-center justify-center text-[10px]">
+                            <span
+                                class="absolute bottom-0 right-0 w-5 h-5 rounded-full bg-emerald-500 border-2 border-slate-900 flex items-center justify-center text-[10px]">
                                 <i class="fa-solid fa-check text-white"></i>
                             </span>
                         </div>
 
                         <div class="text-center sm:text-left flex-1">
-                            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-[11px] font-mono mb-1">
+                            <div
+                                class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-[11px] font-mono mb-1">
                                 <i class="fa-solid fa-shield-halved"></i> ACCESS GRANTED - SESSION ACTIVE
                             </div>
-                            <h2 id="dash-user-name" class="font-orbitron text-lg md:text-xl font-bold text-white">Welcome, User</h2>
+                            <h2 id="dash-user-name" class="font-orbitron text-lg md:text-xl font-bold text-white">
+                                Welcome, User</h2>
                             <p id="dash-user-email" class="text-slate-400 text-xs">user@gmail.com</p>
                         </div>
 
-                        <button id="btn-enter-portal" onclick="goToPortal()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-slate-950 text-xs font-orbitron font-bold transition-all shadow-md">
+                        <button id="btn-enter-portal" onclick="goToPortal()"
+                            class="px-4 py-2 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-slate-950 text-xs font-orbitron font-bold transition-all shadow-md">
                             ENTER AICTE PORTAL <i class="fa-solid fa-arrow-right ml-1.5"></i>
                         </button>
-                        <button onclick="logoutSession()" class="px-4 py-2 rounded-xl border border-red-500/40 bg-red-500/10 hover:bg-red-500/20 text-red-400 text-xs font-orbitron font-bold transition-all">
+                        <button onclick="logoutSession()"
+                            class="px-4 py-2 rounded-xl border border-red-500/40 bg-red-500/10 hover:bg-red-500/20 text-red-400 text-xs font-orbitron font-bold transition-all">
                             <i class="fa-solid fa-power-off mr-1.5"></i>LOGOUT
                         </button>
                     </div>
@@ -534,7 +704,8 @@
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
                         <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
                             <p class="text-[10px] font-mono text-slate-400">AUTH METHOD</p>
-                            <p id="dash-auth-method" class="font-orbitron text-sm font-bold text-cyan-400 mt-0.5">FACIAL MESH</p>
+                            <p id="dash-auth-method" class="font-orbitron text-sm font-bold text-cyan-400 mt-0.5">FACIAL
+                                MESH</p>
                         </div>
                         <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
                             <p class="text-[10px] font-mono text-slate-400">DATABASE STATUS</p>
@@ -542,17 +713,21 @@
                         </div>
                         <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
                             <p class="text-[10px] font-mono text-slate-400">SESSION TOKEN</p>
-                            <p id="dash-session-id" class="font-mono text-[11px] font-bold text-slate-300 mt-0.5 truncate">0x9F82...4A</p>
+                            <p id="dash-session-id"
+                                class="font-mono text-[11px] font-bold text-slate-300 mt-0.5 truncate">0x9F82...4A</p>
                         </div>
                     </div>
 
                     <!-- Biometric Re-Calibration Action Box -->
-                    <div class="p-3.5 rounded-xl border border-cyan-500/30 bg-cyan-950/20 flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <div
+                        class="p-3.5 rounded-xl border border-cyan-500/30 bg-cyan-950/20 flex flex-col sm:flex-row items-center justify-between gap-3">
                         <div class="text-center sm:text-left">
                             <p class="font-orbitron text-xs font-bold text-cyan-300">Biometric Template Management</p>
-                            <p class="text-[11px] text-slate-400 mt-0.5">Enrolled face enables direct 1-glance facial unlocking next time.</p>
+                            <p class="text-[11px] text-slate-400 mt-0.5">Enrolled face enables direct 1-glance facial
+                                unlocking next time.</p>
                         </div>
-                        <button onclick="enrollFaceFromDashboard()" class="px-3.5 py-1.5 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 text-xs font-mono font-bold border border-cyan-400/40 transition-all flex-shrink-0">
+                        <button onclick="enrollFaceFromDashboard()"
+                            class="px-3.5 py-1.5 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 text-xs font-mono font-bold border border-cyan-400/40 transition-all flex-shrink-0">
                             <i class="fa-solid fa-camera mr-1"></i> RE-ENROLL FACE
                         </button>
                     </div>
@@ -562,7 +737,8 @@
         </main>
 
         <!-- FOOTER & TECH SPECS (SLIM & CLEAN) -->
-        <footer class="flex flex-wrap justify-between items-center gap-2 pt-2 border-t border-slate-900/80 text-[11px] font-mono text-slate-500 flex-shrink-0">
+        <footer
+            class="flex flex-wrap justify-between items-center gap-2 pt-2 border-t border-slate-900/80 text-[11px] font-mono text-slate-500 flex-shrink-0">
             <div>
                 <i class="fa-solid fa-shield text-cyan-400 mr-1"></i> SQLite Encrypted Biometric Store
             </div>
@@ -578,7 +754,8 @@
     <!-- ═══════════════════════════════════════════════════════════════ -->
     <!-- MODAL 1: SQLITE DATABASE USERS REGISTRY                         -->
     <!-- ═══════════════════════════════════════════════════════════════ -->
-    <div id="modal-users" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 hidden">
+    <div id="modal-users"
+        class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 hidden">
         <div class="glass-card rounded-2xl w-full max-w-2xl p-5 border border-cyan-500/40 flex flex-col max-h-[85vh]">
             <div class="flex justify-between items-center pb-3 border-b border-slate-800">
                 <div class="flex items-center gap-2">
@@ -607,9 +784,11 @@
                 </table>
             </div>
 
-            <div class="flex justify-between items-center pt-2 border-t border-slate-800 text-[11px] text-slate-400 font-mono">
+            <div
+                class="flex justify-between items-center pt-2 border-t border-slate-800 text-[11px] text-slate-400 font-mono">
                 <span>Persisted in <code class="text-cyan-400">backend/data/auth.db</code></span>
-                <button onclick="fetchDatabaseUsers()" class="px-3 py-1 bg-cyan-950 hover:bg-cyan-900 border border-cyan-500/30 rounded text-cyan-300 text-xs">
+                <button onclick="fetchDatabaseUsers()"
+                    class="px-3 py-1 bg-cyan-950 hover:bg-cyan-900 border border-cyan-500/30 rounded text-cyan-300 text-xs">
                     <i class="fa-solid fa-arrows-rotate mr-1"></i> Refresh
                 </button>
             </div>
@@ -619,7 +798,8 @@
     <!-- ═══════════════════════════════════════════════════════════════ -->
     <!-- MODAL 2: GMAIL SMTP CONFIGURATION (REAL LIVE OTP DELIVERY)      -->
     <!-- ═══════════════════════════════════════════════════════════════ -->
-    <div id="modal-smtp" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 hidden">
+    <div id="modal-smtp"
+        class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 hidden">
         <div class="glass-card rounded-2xl w-full max-w-lg p-5 border border-cyan-500/40 flex flex-col">
             <div class="flex justify-between items-center pb-3 border-b border-slate-800">
                 <div class="flex items-center gap-2">
@@ -632,30 +812,36 @@
             </div>
 
             <div class="my-3 space-y-3 text-xs">
-                <div id="smtp-status-banner" class="p-2.5 rounded-xl bg-amber-950/30 border border-amber-500/40 text-amber-200">
+                <div id="smtp-status-banner"
+                    class="p-2.5 rounded-xl bg-amber-950/30 border border-amber-500/40 text-amber-200">
                     <div class="font-bold flex items-center gap-1.5">
                         <i class="fa-solid fa-circle-info text-amber-400"></i> Current Mode: Virtual / Simulated
                     </div>
                     <p class="text-[11px] text-slate-300 mt-1">
-                        To receive live verification codes directly in your real Gmail inbox, enter your Gmail address and 16-character Google App Password below.
+                        To receive live verification codes directly in your real Gmail inbox, enter your Gmail address
+                        and 16-character Google App Password below.
                     </p>
                 </div>
 
                 <div class="space-y-1">
                     <label class="text-[11px] font-mono text-cyan-300 block">SENDER GMAIL ADDRESS</label>
-                    <input type="email" id="smtp-input-user" placeholder="your_email@gmail.com" class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 px-3 text-sm text-white focus:outline-none">
+                    <input type="email" id="smtp-input-user" placeholder="your_email@gmail.com"
+                        class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 px-3 text-sm text-white focus:outline-none">
                 </div>
 
                 <div class="space-y-1">
                     <label class="text-[11px] font-mono text-cyan-300 block">16-CHARACTER GOOGLE APP PASSWORD</label>
-                    <input type="password" id="smtp-input-pass" placeholder="xxxx xxxx xxxx xxxx" class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 px-3 text-sm text-white font-mono focus:outline-none">
+                    <input type="password" id="smtp-input-pass" placeholder="xxxx xxxx xxxx xxxx"
+                        class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-400 rounded-xl py-2 px-3 text-sm text-white font-mono focus:outline-none">
                 </div>
 
                 <!-- 3-step Instructions -->
-                <div class="p-2.5 bg-slate-900/80 rounded-xl border border-slate-800 text-[11px] text-slate-400 space-y-1">
+                <div
+                    class="p-2.5 bg-slate-900/80 rounded-xl border border-slate-800 text-[11px] text-slate-400 space-y-1">
                     <div class="text-cyan-300 font-bold font-mono">How to get a Google App Password (30 seconds):</div>
                     <ol class="list-decimal pl-4 space-y-0.5">
-                        <li>Visit <a href="https://myaccount.google.com/apppasswords" target="_blank" class="text-cyan-400 underline">myaccount.google.com/apppasswords</a></li>
+                        <li>Visit <a href="https://myaccount.google.com/apppasswords" target="_blank"
+                                class="text-cyan-400 underline">myaccount.google.com/apppasswords</a></li>
                         <li>Give it an App name (e.g. "Biometric Auth") and click Create.</li>
                         <li>Copy the 16-character password and paste it above!</li>
                     </ol>
@@ -663,10 +849,12 @@
             </div>
 
             <div class="flex justify-end gap-2 pt-2 border-t border-slate-800">
-                <button type="button" onclick="closeSmtpModal()" class="px-3.5 py-1.5 rounded-lg border border-slate-700 text-slate-400 hover:text-white text-xs">
+                <button type="button" onclick="closeSmtpModal()"
+                    class="px-3.5 py-1.5 rounded-lg border border-slate-700 text-slate-400 hover:text-white text-xs">
                     Close
                 </button>
-                <button type="button" id="btn-save-smtp" onclick="saveSmtpConfig()" class="px-4 py-1.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-orbitron font-bold text-xs shadow-md">
+                <button type="button" id="btn-save-smtp" onclick="saveSmtpConfig()"
+                    class="px-4 py-1.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-orbitron font-bold text-xs shadow-md">
                     VERIFY & SAVE
                 </button>
             </div>
@@ -674,7 +862,8 @@
     </div>
 
     <!-- HUD TOAST NOTIFICATION CONTAINER -->
-    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none max-w-sm"></div>
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none max-w-sm">
+    </div>
 
     <!-- ═══════════════════════════════════════════════════════════════ -->
     <!-- APPLICATION LOGIC & MEDIAPIPE TRACKING                          -->
@@ -796,7 +985,7 @@
                 try {
                     if (handsDetector) await handsDetector.send({ image: videoElement });
                     if (faceMeshDetector) await faceMeshDetector.send({ image: videoElement });
-                } catch (e) {}
+                } catch (e) { }
                 isDetecting = false;
             }
             requestAnimationFrame(detectionWorkerLoop);
@@ -882,11 +1071,11 @@
         // CANVAS GRAPHICS: HAND SKELETON
         function drawHandSkeleton(landmarks) {
             const connections = [
-                [0,1],[1,2],[2,3],[3,4], // Thumb
-                [0,5],[5,6],[6,7],[7,8], // Index
-                [5,9],[9,10],[10,11],[11,12], // Middle
-                [9,13],[13,14],[14,15],[15,16], // Ring
-                [13,17],[17,18],[18,19],[19,20],[0,17] // Pinky & Palm
+                [0, 1], [1, 2], [2, 3], [3, 4], // Thumb
+                [0, 5], [5, 6], [6, 7], [7, 8], // Index
+                [5, 9], [9, 10], [10, 11], [11, 12], // Middle
+                [9, 13], [13, 14], [14, 15], [15, 16], // Ring
+                [13, 17], [17, 18], [18, 19], [19, 20], [0, 17] // Pinky & Palm
             ];
 
             canvasCtx.strokeStyle = 'rgba(56, 189, 248, 0.55)';
@@ -1065,7 +1254,7 @@
                 gain.connect(ctx.destination);
                 osc.start();
                 osc.stop(ctx.currentTime + duration);
-            } catch (e) {}
+            } catch (e) { }
         }
     </script>
 
@@ -1123,7 +1312,7 @@
         // ═══════════════════════════════════════════════════════════
         // SEPARATE REGISTRATION: INSTITUTION vs AICTE MEMBER
         // ═══════════════════════════════════════════════════════════
-        const REG_ON  = "py-2 rounded-xl border text-xs font-semibold transition-all border-cyan-400 bg-cyan-500/20 text-cyan-200";
+        const REG_ON = "py-2 rounded-xl border text-xs font-semibold transition-all border-cyan-400 bg-cyan-500/20 text-cyan-200";
         const REG_OFF = "py-2 rounded-xl border text-xs font-semibold transition-all border-slate-700 bg-slate-900/70 text-slate-400 hover:text-white";
         function setRegType(type) {
             window.appState.regType = type;
@@ -1141,7 +1330,7 @@
                 const r = await fetch('/api/auth/registration-options'); const d = await r.json();
                 document.getElementById('reg-mem-role').innerHTML = d.roles.map(x => `<option value="${x.key}">${x.label}</option>`).join('');
                 document.getElementById('reg-mem-region').innerHTML = '<option value="">Select region</option>' + d.regions.map(x => `<option>${x}</option>`).join('');
-            } catch (e) {}
+            } catch (e) { }
         }
         // Collect + validate the type-specific fields; returns an object or null (after showing a toast)
         function collectRegProfile() {
@@ -1177,6 +1366,8 @@
                 viewCreds.classList.remove('hidden');
                 document.getElementById('main-title').innerText = window.appState.currentMode === 'login' ? "Client Account Login" : "New User Registration";
                 document.getElementById('main-subtitle').innerText = "Step 1: Enter your identification details to proceed";
+                const otpInput = document.getElementById('input-auth-otp');
+                if (otpInput) otpInput.value = '';
             } else if (stepNumber === 2) {
                 viewCards.classList.remove('hidden');
                 document.getElementById('main-title').innerText = "Gesture Method Selection";
@@ -1190,7 +1381,7 @@
                 } else {
                     viewPass.classList.remove('hidden');
                     document.getElementById('main-title').innerText = "Security Credentials";
-                    document.getElementById('main-subtitle').innerText = "Step 3: Enter password or request 6-digit email OTP";
+                    document.getElementById('main-subtitle').innerText = "Step 3: Enter password or click [ SEND OTP ] to generate verification code";
                 }
             } else if (stepNumber === 4) {
                 viewDash.classList.remove('hidden');
@@ -1417,7 +1608,7 @@
         // PASSWORD & OTP AUTHENTICATION
         // ═══════════════════════════════════════════════════════════
 
-        // REQUEST OTP CODE FROM BACKEND
+        // REQUEST OTP CODE FROM BACKEND & AUTOFILL AUTOMATICALLY ON CLICK
         async function requestOTP() {
             const email = window.appState.userData.email;
             if (!email) {
@@ -1427,8 +1618,19 @@
 
             const btn = document.getElementById('btn-request-otp');
             const alertBox = document.getElementById('otp-alert-box');
-            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-1"></i> SENDING...`;
-            btn.disabled = true;
+            const otpInput = document.getElementById('input-auth-otp');
+            const isResend = btn && btn.innerText.includes('RESEND');
+
+            // Clear old value and indicate progress
+            if (otpInput) {
+                otpInput.value = '';
+                otpInput.placeholder = "GENERATING...";
+            }
+
+            if (btn) {
+                btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-1"></i> ${isResend ? 'RESENDING...' : 'GENERATING...'}`;
+                btn.disabled = true;
+            }
 
             try {
                 const res = await fetch('/api/auth/send-otp', {
@@ -1442,41 +1644,72 @@
                 });
 
                 const data = await res.json();
-                btn.innerHTML = `<i class="fa-solid fa-paper-plane mr-1"></i> [ RESEND CODE ]`;
-                btn.disabled = false;
+                if (btn) {
+                    btn.innerHTML = `<i class="fa-solid fa-rotate-right mr-1"></i> [ RESEND OTP ]`;
+                    btn.disabled = false;
+                }
 
                 if (res.ok) {
                     playAudioChirp(700, 0.15);
-                    if (data.deliveredToGmail) {
-                        showToast(`✅ Live OTP sent to ${email} inbox!`, "success");
-                        alertBox.innerHTML = `
-                            <div class="text-emerald-400 font-bold mb-1">
-                                <i class="fa-solid fa-envelope-circle-check mr-1"></i> Dispatched to Gmail inbox!
-                            </div>
-                            <span class="text-slate-300">Check inbox/spam at <strong>${email}</strong></span>
-                        `;
-                    } else {
-                        // Simulated / local OTP notice
-                        showToast(`🔑 OTP Generated: ${data.debugOtp}`, "info");
-                        alertBox.innerHTML = `
-                            <div class="text-amber-300 font-bold mb-0.5">
-                                <i class="fa-solid fa-bell mr-1"></i> Generated OTP: <span class="text-cyan-300 font-mono text-base px-2 py-0.5 rounded bg-cyan-950 border border-cyan-500/40">${data.debugOtp}</span>
-                            </div>
-                            <span class="text-slate-400 text-[10px]">
-                                Real Gmail dispatch requires Google App Password. Click <a href="javascript:void(0)" onclick="openSmtpModal()" class="text-cyan-400 underline font-bold">⚙️ GMAIL SMTP</a> to configure.
-                            </span>
-                        `;
+                    const otpVal = data.debugOtp || data.demo_otp || data.otp;
+
+                    // Automatically populate and fire input events
+                    if (otpInput && otpVal) {
+                        otpInput.value = otpVal;
+                        otpInput.placeholder = "6-DIGIT CODE";
+                        otpInput.dispatchEvent(new Event('input', { bubbles: true }));
+                        otpInput.dispatchEvent(new Event('change', { bubbles: true }));
+
+                        // Visual highlight animation for clear user confirmation
+                        otpInput.classList.remove('ring-1', 'ring-cyan-400');
+                        otpInput.classList.add('ring-2', 'ring-emerald-400', 'border-emerald-400', 'bg-emerald-950/40');
+                        setTimeout(() => {
+                            otpInput.classList.remove('ring-2', 'ring-emerald-400', 'border-emerald-400', 'bg-emerald-950/40');
+                        }, 2500);
                     }
 
-                    if (data.debugOtp) {
-                        document.getElementById('input-auth-otp').value = data.debugOtp;
+                    if (data.deliveredToGmail) {
+                        showToast(`✅ Fresh OTP generated & sent to ${email}: ${otpVal}`, "success");
+                        if (alertBox) {
+                            alertBox.innerHTML = `
+                                <div class="text-emerald-400 font-bold mb-1">
+                                    <i class="fa-solid fa-envelope-circle-check mr-1"></i> Dispatched to Gmail inbox & Auto-filled!
+                                </div>
+                                <span class="text-slate-300 text-xs">Code <strong class="text-emerald-300 font-mono text-base px-2 py-0.5 rounded bg-emerald-950 border border-emerald-500/40">${otpVal}</strong> auto-populated below. Click <strong class="text-cyan-300 font-bold">VERIFY & UNLOCK</strong>.</span>
+                            `;
+                        }
+                    } else {
+                        // Simulated / local OTP notice
+                        showToast(`🔑 OTP Generated & Auto-filled: ${otpVal}`, "success");
+                        if (alertBox) {
+                            alertBox.innerHTML = `
+                                <div class="text-emerald-400 font-bold mb-0.5">
+                                    <i class="fa-solid fa-bolt mr-1"></i> Auto-filled OTP: <span class="text-cyan-300 font-mono text-base px-2 py-0.5 rounded bg-cyan-950 border border-cyan-500/40 font-bold">${otpVal}</span>
+                                </div>
+                                <span class="text-slate-300 text-[11px]">
+                                    Verification code automatically populated. Click <strong class="text-cyan-300 font-bold">VERIFY & UNLOCK</strong> to proceed.
+                                </span>
+                            `;
+                        }
                     }
                 } else {
-                    showToast(data.error || "Failed to send OTP", "error");
+                    if (otpInput) {
+                        otpInput.placeholder = "6-DIGIT CODE";
+                    }
+                    if (btn) {
+                        btn.innerHTML = isResend ? `<i class="fa-solid fa-rotate-right mr-1"></i> [ RESEND OTP ]` : `<i class="fa-solid fa-paper-plane mr-1"></i> [ SEND OTP ]`;
+                        btn.disabled = false;
+                    }
+                    showToast(data.error || "Failed to generate OTP", "error");
                 }
             } catch (err) {
-                btn.innerHTML = `<i class="fa-solid fa-paper-plane mr-1"></i> [ SEND CODE ]`;
-                btn.disabled = false;
+                if (otpInput) {
+                    otpInput.placeholder = "6-DIGIT CODE";
+                }
+                if (btn) {
+                    btn.innerHTML = isResend ? `<i class="fa-solid fa-rotate-right mr-1"></i> [ RESEND OTP ]` : `<i class="fa-solid fa-paper-plane mr-1"></i> [ SEND OTP ]`;
+                    btn.disabled = false;
+                }
                 showToast("Backend connection error", "error");
             }
         }
@@ -1550,14 +1783,14 @@
             const enterBtn = document.getElementById('btn-enter-portal');
             clearTimeout(window._portalTimer);
             if (regStatus === 'Pending' || !token) {
-                try { localStorage.removeItem('aicte_session'); } catch (e) {}
+                try { localStorage.removeItem('aicte_session'); } catch (e) { }
                 if (enterBtn) enterBtn.classList.add('hidden');
                 document.getElementById('main-title').innerText = "Registration Received";
                 document.getElementById('main-subtitle').innerHTML = '<span class="text-amber-300 font-bold"><i class="fa-solid fa-hourglass-half mr-1"></i> Awaiting System Admin approval — you can sign in once your member account is approved.</span>';
             } else if (token) {
                 try {
                     localStorage.setItem('aicte_session', JSON.stringify({ user, token, method: authMethod, at: Date.now() }));
-                } catch (e) {}
+                } catch (e) { }
                 if (enterBtn) enterBtn.classList.remove('hidden');
                 document.getElementById('main-subtitle').innerHTML += ' <span class="text-orange-300 font-semibold">&middot; Opening AICTE Portal…</span>';
                 window._portalTimer = setTimeout(goToPortal, 2200);
@@ -1584,7 +1817,7 @@
             window.appState.authenticatedUser = null;
             window.appState.authToken = null;
             clearTimeout(window._portalTimer);
-            try { localStorage.removeItem('aicte_session'); } catch (e) {}
+            try { localStorage.removeItem('aicte_session'); } catch (e) { }
             setAuthMode('login');
             showToast("Session terminated. Logged out.", "info");
         }
@@ -1623,7 +1856,7 @@
                     badge.className = "flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 px-2.5 py-1 rounded-md border border-amber-500/40 text-amber-300 transition-all text-xs";
                     text.innerText = "GMAIL SMTP";
                 }
-            } catch (e) {}
+            } catch (e) { }
         }
 
         async function saveSmtpConfig() {
@@ -1761,4 +1994,5 @@
         }
     </script>
 </body>
+
 </html>

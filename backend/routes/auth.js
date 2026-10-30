@@ -123,12 +123,16 @@ router.post('/send-otp', async (req, res) => {
     }
 
     cleanupOTPs(email);
+    // Invalidate any existing unused OTPs so only the newly generated code is valid
+    try {
+      db.prepare('UPDATE otps SET used = 1 WHERE LOWER(email) = LOWER(?) AND used = 0').run(email);
+    } catch (_) {}
 
     const recentCount = db.prepare(
       `SELECT COUNT(*) as cnt FROM otps WHERE LOWER(email) = ? AND datetime(created_at) > datetime('now', '-5 minutes')`
     ).get(email);
 
-    if (recentCount && recentCount.cnt >= 10) {
+    if (recentCount && recentCount.cnt >= 30) {
       return res.status(429).json({ error: 'Too many OTP requests. Please wait a minute before requesting another code.' });
     }
 
@@ -152,6 +156,8 @@ router.post('/send-otp', async (req, res) => {
         ? `Live verification code sent to ${email} inbox!`
         : `Verification code generated: [ ${otp} ] (Configure Gmail App Password in Settings for real inbox delivery)`,
       debugOtp: otp,
+      demo_otp: otp,
+      otp: otp,
       smtpStatus: getStatus(),
       expiresInMinutes: OTP_EXPIRY_MINUTES
     });

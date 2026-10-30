@@ -221,7 +221,7 @@ export function renderAuthPortal(container, { onOpenSupabaseModal }) {
         body: JSON.stringify({ email: emailInput.trim(), type: 'login' })
       });
       const data = await res.json();
-      generatedDemoOtp = data.demo_otp || '482910';
+      generatedDemoOtp = data.demo_otp || data.debugOtp || data.otp || '482910';
       otpCode = generatedDemoOtp;
     } catch (_) {
       generatedDemoOtp = '482910';
@@ -807,7 +807,11 @@ export function renderAuthPortal(container, { onOpenSupabaseModal }) {
       btn.addEventListener('click', () => {
         cleanupIntervals();
         biometricMethod = btn.getAttribute('data-bio-tab');
-        render();
+        if (biometricMethod === 'otp' && !otpCode) {
+          handleSendOtp();
+        } else {
+          render();
+        }
       });
     });
 
