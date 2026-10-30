@@ -1,0 +1,13 @@
+node_modules/
+.env
+.env.*
+!.env.example
+dist/
+build/
+.next/
+coverage/
+backend/data/*.db
+backend/data/*.json
+.backup_pristine/
+*.db
+*.sqlite

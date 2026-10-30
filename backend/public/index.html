@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AICTE Approval &amp; Compliance Management System</title>
+<meta name="description" content="All India Council for Technical Education — Approval &amp; Compliance Management System. Secure biometric sign-in and role-based approval workflow.">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/aicte.css">
+</head>
+<body>
+<div class="tricolour"></div>
+<div class="utility"><div class="wrap">
+  <div>
+    <a href="#main">Skip to main content</a>
+    <a href="#about">About</a>
+    <a href="#help">Help &amp; Support</a>
+  </div>
+  <div class="right">
+    <span>Text size:</span>
+    <div class="fs-controls" role="group" aria-label="Text size accessibility controls">
+      <button id="fs-minus" aria-label="Decrease text size" title="Decrease text size (A−)">A−</button>
+      <button id="fs-reset" aria-label="Reset text size" title="Reset text size (A)">A</button>
+      <button id="fs-plus" aria-label="Increase text size" title="Increase text size (A+)">A+</button>
+    </div>
+    <div class="contrast-toggle">
+      <button id="theme-contrast" aria-label="Toggle High Contrast" title="Toggle High Contrast">Contrast</button>
+    </div>
+  </div>
+</div></div>
+
+<header class="masthead"><div class="wrap">
+  <a class="brand" href="/" aria-label="AICTE home">
+    <img src="/assets/aicte-logo.png" alt="AICTE logo">
+    <div>
+      <div class="t1 hi">अखिल भारतीय तकनीकी शिक्षा परिषद</div>
+      <div class="t2">All India Council for Technical Education</div>
+      <div class="t3">Ministry of Education, Government of India</div>
+    </div>
+  </a>
+  <div class="mast-actions">
+    <a class="btn btn-outline" href="/login?register=institution">Register</a>
+    <a class="btn btn-primary" href="/login">Portal Login &rarr;</a>
+  </div>
+</div></header>
+
+<nav class="nav" aria-label="Main"><div class="wrap">
+  <a class="on" href="#home" id="nav-home">Home</a>
+  <a href="#about" id="nav-about">About the Portal</a>
+  <a href="#workflow" id="nav-workflow">Approval Process</a>
+  <a href="#workspaces" id="nav-workspaces">Workspaces</a>
+  <a href="#help" id="nav-help">Help</a>
+  <span class="spacer"></span>
+  <a href="/login?register=institution">Institution Registration</a>
+  <a href="/login?register=member">Member Registration</a>
+  <a href="/login">Login</a>
+</div></nav>
+
+<div class="ticker"><div class="wrap">
+  <span class="tag">LATEST</span>
+  <div class="track"><span>Approval Process Handbook (APH) 2026–27 is now live &nbsp;•&nbsp; Institutions must respond to deficiencies within the prescribed window &nbsp;•&nbsp; EVC visit schedules are published in the portal &nbsp;•&nbsp; Upload valid fire-safety and land documents before expiry &nbsp;•&nbsp; Sign in with Face recognition, Gesture or Password + OTP</span></div>
+</div></div>
+
+<main id="main" tabindex="-1">
+<section class="hero" id="home"><div class="inner">
+  <div class="sanskrit">योगः कर्मसु कौशलम्</div>
+  <span class="eyebrow">SMART APPROVALS. CLEAR COMPLIANCE.</span>
+  <h1>AICTE Approval &amp; <span>Compliance</span> Management System</h1>
+  <p class="lead">A smarter, simpler way to manage approvals, track applications and stay on top of compliance — one secure portal for institutions, the Bureau, Regional Offices and expert committees.</p>
+  <div class="cta">
+    <a class="btn btn-primary" href="/login">Login to Portal &rarr;</a>
+    <button class="btn btn-ghost" id="watchDemo" onclick="window.openDemoModal && window.openDemoModal()">&#9654;&nbsp; How it works</button>
+  </div>
+  <div class="pillars">
+    <div class="pillar"><i>&#10227;</i><h3>Automated Workflow</h3><p>Stage-wise routing from submission to final approval.</p></div>
+    <div class="pillar"><i>&#9719;</i><h3>Real-time Tracking</h3><p>Follow every application and deadline in one place.</p></div>
+    <div class="pillar"><i>&#9826;</i><h3>Secure &amp; Transparent</h3><p>Biometric sign-in, role-based access, full audit trail.</p></div>
+    <div class="pillar"><i>&#9678;</i><h3>Compliance Monitoring</h3><p>Undertakings, document validity and escalations.</p></div>
+  </div>
+</div></section>
+
+<section class="block alt" id="workflow"><div class="container">
+  <h2 class="section-title">The Approval Journey</h2>
+  <p class="section-sub">Every application moves through the same accountable stages. Each stage belongs to a defined role and is recorded in the audit trail.</p>
+  <div class="flow">
+    <div class="step"><h4>Submission</h4><p>Institution applies &amp; uploads evidence</p></div>
+    <div class="step"><h4>Scrutiny</h4><p>Scrutiny Officer checks documents</p></div>
+    <div class="step"><h4>EVC Visit</h4><p>Expert panel scores 4 pillars</p></div>
+    <div class="step"><h4>SAC / SHC</h4><p>Bench hears &amp; recommends</p></div>
+    <div class="step"><h4>Competent Authority</h4><p>Decision on EoA / LoA</p></div>
+    <div class="step"><h4>Compliance</h4><p>Undertakings &amp; validity tracked</p></div>
+  </div>
+</div></section>
+
+<section class="block" id="about"><div class="container">
+  <h2 class="section-title">Approval Management, Made Simpler</h2>
+  <p class="section-sub">A central place to manage approvals, track progress and keep compliance information organised.</p>
+  <div class="cards">
+    <div class="card"><h3>One Clear Workflow</h3><p>Keep every approval step together and see exactly what needs your attention next, with overdue files escalated automatically.</p></div>
+    <div class="card"><h3>Secure Biometric Sign-in</h3><p>One login for everyone — face recognition, fingertip gestures or password with email OTP — backed by a SQLite database.</p></div>
+    <div class="card" id="help"><h3>Help &amp; Support</h3><p>Use the navigation above to find your workspace. Staff roles are assigned by the System Admin; institutions manage their own applications.</p></div>
+  </div>
+</div></section>
+
+<section class="block alt" id="workspaces"><div class="container">
+  <h2 class="section-title">One Portal, Role-based Workspaces</h2>
+  <p class="section-sub">After signing in, you are routed directly to your authenticated workspace. Each account is strictly isolated and only offers the actions and data its role is permitted to access.</p>
+  <div class="roles">
+    <div class="role">Institution</div><div class="role">Bureau Officer</div><div class="role">Bureau Head</div><div class="role">Regional Officer</div><div class="role">Scrutiny Officer</div>
+    <div class="role">EVC Member</div><div class="role">SAC Member</div><div class="role">SHC Member</div><div class="role">Member Secretary</div><div class="role">Chairman</div><div class="role">System Admin</div><div class="role">Auditor</div>
+  </div>
+</div></section>
+
+<div class="cta-band">
+  <h2>Ready to continue?</h2>
+  <p>Sign in securely to open your AICTE workspace.</p>
+  <a class="btn btn-primary" href="/login">Login to Portal &rarr;</a>
+</div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div>
+      <div class="logo-row"><img src="/assets/aicte-logo.png" alt=""> AICTE</div>
+      <p>All India Council for Technical Education<br>Nelson Mandela Marg, Vasant Kunj, New Delhi – 110070</p>
+    </div>
+    <div><h5>Portal</h5><a href="/login">Login</a><a href="/login?register=institution">Institution Registration</a><a href="/login?register=member">Member Registration</a><a href="#workflow">Approval Process</a><a href="#workspaces">Workspaces</a></div>
+    <div><h5>Information</h5><a href="#about">About the Portal</a><a href="#help">Help &amp; Support</a><a href="https://www.aicte-india.org" target="_blank" rel="noopener">AICTE official website</a></div>
+  </div>
+  <div class="legal">Prototype for academic use (SIH 2026 • PS 26262). Decisions remain with authorized human officials. All records shown are fictional demo data.</div>
+</footer>
+
+<button id="backToTop" class="back-to-top" aria-label="Back to top" title="Back to top of page">&#8593;</button>
+
+<div class="modal" id="demoModal" role="dialog" aria-modal="true" aria-labelledby="demoTitle">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 id="demoTitle">How the portal works</h2>
+      <button class="close-button" id="closeDemo" onclick="window.closeDemoModal && window.closeDemoModal()" aria-label="Close dialog">&times;</button>
+    </div>
+    <ol>
+      <li>Click <b>Login to Portal</b> and sign in with your face, a fingertip gesture or password + OTP.</li>
+      <li>You land directly on your role-bound PS 26262 dashboard workspace with strict account and data isolation.</li>
+      <li>Work your queue: scrutinise, review, route, approve or revert — every action is audit-logged.</li>
+      <li>Track compliance, document validity, EVC visits and escalations from the sidebar.</li>
+    </ol>
+    <a class="btn btn-primary" href="/login">Go to login &rarr;</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Demo Modal Logic
+  var m = document.getElementById('demoModal');
+  var watchBtn = document.getElementById('watchDemo');
+  var closeBtn = document.getElementById('closeDemo');
+
+  function openModal() {
+    if (m) {
+      m.classList.add('show');
+      document.body.classList.add('modal-open');
+      if (closeBtn) closeBtn.focus();
+    }
+  }
+  function closeModal() {
+    if (m) {
+      m.classList.remove('show');
+      document.body.classList.remove('modal-open');
+      if (watchBtn) watchBtn.focus();
+    }
+  }
+
+  window.openDemoModal = openModal;
+  window.closeDemoModal = closeModal;
+
+  if (watchBtn) watchBtn.addEventListener('click', openModal);
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (m) {
+    m.addEventListener('click', function(e) {
+      if (e.target === m) closeModal();
+    });
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && m && m.classList.contains('show')) closeModal();
+  });
+
+  // Text size accessibility controls
+  var minSize = 80;
+  var maxSize = 130;
+  var step = 10;
+  var size = 100;
+  try {
+    var stored = localStorage.getItem('aicte_fs');
+    if (stored) size = parseInt(stored, 10) || 100;
+  } catch(e) {}
+
+  var btnMinus = document.getElementById('fs-minus');
+  var btnReset = document.getElementById('fs-reset');
+  var btnPlus = document.getElementById('fs-plus');
+
+  function updateA11yUI() {
+    size = Math.min(maxSize, Math.max(minSize, size));
+    document.documentElement.style.fontSize = size + '%';
+    document.documentElement.style.setProperty('--font-scale', (size / 100).toString());
+
+    if (btnMinus) {
+      btnMinus.classList.toggle('active', size < 100);
+      btnMinus.disabled = size <= minSize;
+      btnMinus.setAttribute('aria-pressed', size < 100 ? 'true' : 'false');
+      btnMinus.title = size <= minSize ? 'Minimum text size reached (80%)' : 'Decrease text size (' + (size - step) + '%)';
+    }
+    if (btnReset) {
+      btnReset.classList.toggle('active', size === 100);
+      btnReset.setAttribute('aria-pressed', size === 100 ? 'true' : 'false');
+      btnReset.title = 'Normal text size (100%)';
+    }
+    if (btnPlus) {
+      btnPlus.classList.toggle('active', size > 100);
+      btnPlus.disabled = size >= maxSize;
+      btnPlus.setAttribute('aria-pressed', size > 100 ? 'true' : 'false');
+      btnPlus.title = size >= maxSize ? 'Maximum text size reached (130%)' : 'Increase text size (' + (size + step) + '%)';
+    }
+
+    try { localStorage.setItem('aicte_fs', size.toString()); } catch(e) {}
+  }
+
+  updateA11yUI();
+
+  if (btnPlus) {
+    btnPlus.addEventListener('click', function() {
+      if (size < maxSize) {
+        size = Math.min(maxSize, size + step);
+        updateA11yUI();
+      }
+    });
+  }
+  if (btnMinus) {
+    btnMinus.addEventListener('click', function() {
+      if (size > minSize) {
+        size = Math.max(minSize, size - step);
+        updateA11yUI();
+      }
+    });
+  }
+  if (btnReset) {
+    btnReset.addEventListener('click', function() {
+      size = 100;
+      updateA11yUI();
+    });
+  }
+
+  // Contrast Mode Toggle
+  var contrastBtn = document.getElementById('theme-contrast');
+  var isHighContrast = false;
+  try {
+    isHighContrast = localStorage.getItem('aicte_contrast') === 'high';
+  } catch(e) {}
+
+  function applyContrast() {
+    if (isHighContrast) {
+      document.documentElement.classList.add('high-contrast');
+      if (contrastBtn) {
+        contrastBtn.classList.add('active');
+        contrastBtn.setAttribute('aria-pressed', 'true');
+        contrastBtn.title = 'Switch to Normal Contrast';
+      }
+    } else {
+      document.documentElement.classList.remove('high-contrast');
+      if (contrastBtn) {
+        contrastBtn.classList.remove('active');
+        contrastBtn.setAttribute('aria-pressed', 'false');
+        contrastBtn.title = 'Switch to High Contrast';
+      }
+    }
+    try { localStorage.setItem('aicte_contrast', isHighContrast ? 'high' : 'normal'); } catch(e) {}
+  }
+
+  applyContrast();
+
+  if (contrastBtn) {
+    contrastBtn.addEventListener('click', function() {
+      isHighContrast = !isHighContrast;
+      applyContrast();
+    });
+  }
+
+  // Scrollspy & Back to Top
+  var btt = document.getElementById('backToTop');
+  var navLinks = document.querySelectorAll('.nav a[href^="#"]');
+  var sections = [];
+  navLinks.forEach(function(link) {
+    var href = link.getAttribute('href');
+    if (href && href.length > 1) {
+      var target = document.querySelector(href);
+      if (target) sections.push({ link: link, target: target });
+    }
+  });
+
+  window.addEventListener('scroll', function() {
+    var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    if (btt) {
+      if (scrollY > 300) {
+        btt.classList.add('visible');
+      } else {
+        btt.classList.remove('visible');
+      }
+    }
+
+    var scrollPos = scrollY + 120;
+    var currentSection = null;
+    sections.forEach(function(item) {
+      var top = item.target.offsetTop;
+      var height = item.target.offsetHeight;
+      if (scrollPos >= top && scrollPos < top + height) {
+        currentSection = item.link;
+      }
+    });
+
+    if (currentSection) {
+      navLinks.forEach(function(l) { l.classList.remove('on'); });
+      currentSection.classList.add('on');
+    }
+  }, { passive: true });
+
+  if (btt) {
+    btt.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+})();
+</script>
+</body>
+</html>
